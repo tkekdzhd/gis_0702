@@ -4,8 +4,13 @@
     {#  em은 부모의 폰트 크기에 따라 바뀜  #}
     <div style="margin: 2rem; text-align: center">
         <h1>HTTP METHOD</h1>
+        <form action="/accounts/hello_world/" method="POST">
+            {% csrf_token %}
+            <input class="btn btn-outline-dark rounded-pill px-5" type="submit">
 
-        #단순변수출력
+        </form>
+
+        {#단순변수출력#}
         <h3>{{ text }}</h3>
     </div>
 {% endblock %}
