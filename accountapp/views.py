@@ -1,7 +1,13 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
-from django.shortcuts import render
 from accountapp.models import NewModel
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse, reverse_lazy
+from django.shortcuts import render
+from django.views.generic import CreateView
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+
+
+
 
 # Create your views here.
 
@@ -19,3 +25,11 @@ def hello_world(request):
     else:
         data_list = NewModel.objects.all()
         return render(request, 'accountapp/hello_world.html', context={'data_list': data_list})
+
+
+class AccountCreateView(CreateView):
+    model = User
+    form_class = UserCreationForm
+    # reverse_lazy 를 쓰는 이유: 함수에서는 reverse를 바로 불러오면 되지만 클래스에서는 추후에 부를 때 값을 되돌려 달라는 의미의 reverse_lazy를 사용한다.
+    success_url = reverse_lazy('accountapp:hello_world')
+    template_name = 'accountapp/create.html'
