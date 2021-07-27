@@ -23,4 +23,4 @@ urlpatterns = [
     path('accounts/', include('accountapp.urls')),
     path('profiles/', include('profileapp.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-# settings : settings.py에서 설정해놓은 값에 접근할 수 있게 함.
+
